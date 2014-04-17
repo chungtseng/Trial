@@ -1,0 +1,9 @@
+dna = 'ATAGCCGA'
+p = 1.0
+for i in dna:
+	if i in 'CG':
+		p *= 0.3
+	else:
+		p *= 0.2
+print 1 - (1-p)**90000
+	
