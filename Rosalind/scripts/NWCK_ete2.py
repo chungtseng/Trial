@@ -6,12 +6,14 @@ def newick_dist(newick,a,b):
         pass
     climbs = 0
     descents = 0
+    dist = 0
     for token in tokens:
         if token in taxa:
             break
         if token in ',)':
             if descents > 0:
                 descents -= 1
+                
             else:
                 climbs += 1
         if token in ',(':
@@ -30,7 +32,7 @@ def newick_reader(filename):
     return newick, nodes    
     
 if __name__ == '__main__':
-    newick,nodes = newick_reader('/home/ycz/Rosalind/input/NWCK_in.txt')
+    newick,nodes = newick_reader('/home/ycz/Rosalind/input/NKEW_in.txt')
     results = []
     print type(nodes[0][0])
     for ind,ite in enumerate(newick):
