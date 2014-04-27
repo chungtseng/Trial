@@ -1,0 +1,20 @@
+def newick_dist(newick,a,b):
+    if a == b:
+        return 0
+    for i in xrange(len(newick)):
+        if newick[i] == a:
+            a_ind = i
+        if newick[i] == b:
+            b_ind = i
+    counter = 0
+    for i in xrange(min(a_ind,b_ind),max(a_ind,b_ind)):
+        if newick[i] == '(':
+            counter += 1
+        elif newick[i] == ')':
+            counter -= 1
+    return abs(counter)
+
+        
+    
+if __name__ == '__main__':
+    

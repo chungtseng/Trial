@@ -12,7 +12,7 @@ def EDTA(sequence_1,sequence_2):
             left = score_mat[row+1][col] + 1
             up = score_mat[row][col+1] + 1
             if sequence_1[row] == sequence_2[col]:
-                    upper_left = score_mat[row][col] 
+                    upper_left = score_mat[row][col] -1000
             else:
                     upper_left = score_mat[row][col] + 1
             score = [upper_left,left,up]
