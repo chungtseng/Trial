@@ -18,6 +18,7 @@ def greedy_BFS_rev_dist(identity, perm):
 	dist = 0
 	min_bp = float('inf')
 	while True:
+                next_perms = []
 		dist += 1
 		for check_perm in frontier:
 			break_points = count_breakpoint(check_perm)
@@ -31,14 +32,8 @@ def greedy_BFS_rev_dist(identity, perm):
 					if temp_bp == 0:
 						return dist
 					if tuple(temp_perm) not in level:
-						if min_bp > temp_bp:
-							next_perms = []
-							min_bp = temp_bp
-							level[tuple(temp_perm)] = dist
-							next_perms.append(temp_perm)
-						elif min_bp == temp_bp:
-							level[tuple(temp_perm)] = dist
-							next_perms.append(temp_perm)
+						level[tuple(temp_perm)] = dist
+						next_perms.append(temp_perm)
 		#print next_perms
 		frontier = next_perms[:]
 

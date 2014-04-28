@@ -45,7 +45,7 @@ def greedy_BFS_rev_dist(identity, perm):
 
 if __name__ == '__main__':
 	perms = []
-	with open('/home/ycz/Rosalind/input/SORT_in_2.txt', 'r') as input_data:
+	with open('/home/ycz/Rosalind/input/SORT_in.txt', 'r') as input_data:
 		for line in input_data:
 			if len(line) != 1:
 				linex = line.strip('\n').split(' ')

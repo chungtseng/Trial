@@ -20,11 +20,7 @@ def newick_dist(newick,a,b):
                 dist = dist - int(toks[ind+n-1])
             else:
                 climbs += 1
-                #print toks[ind+n-1]
-                if token == ',':
-                    dist += int(toks[ind+n-1])
-                else:
-                    dist += int(toks[ind+n-1])
+                dist += int(toks[ind+n-1])
         if token in ',(' and token != '':
             descents += 1
             ls = 0
@@ -66,4 +62,4 @@ def tmain():
         print i[1],
     return [i[1] for i in results]
 if __name__ == '__main__':
-    main()
+    tmain()
