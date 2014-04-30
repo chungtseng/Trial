@@ -1,0 +1,5 @@
+import csv
+with open('/home/ycz/Rotation_linkage/passed/Widom Panel 1A Plate 1 2012-10-15.csv', 'rb') as trial_data:
+    trial_reader = csv.reader(trial_data, dialect = 'excel')
+    for row in trial_reader:
+        print row

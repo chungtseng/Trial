@@ -1,6 +1,6 @@
 def count_breakpoint(L):
 	#Return break points indices (start of a consecutive block) and number of beak points.
-	break_points = []
+        break_points = []
 	for i in xrange(len(L)-1):
 		if abs(L[i+1] - L[i]) != 1:
 			break_points.append(i+1)
