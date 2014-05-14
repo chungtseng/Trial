@@ -1,6 +1,0 @@
-
-
-if __name__ == '__main__':
-    with open('/home/ycz/Rosalind/input/CTBL_in.txt', 'rb') as in_data:
-        newick = in_data.readline().strip
-    print newick
