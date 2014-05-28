@@ -1,6 +1,6 @@
 def GLOB(pr_1, pr_2):
 	score_dict = {}
-	with open('/home/ycz/Rosalind/input/BLOSUM62.txt') as mat:
+	with open('/home/ycz/Rosalind/input/PAM250.txt') as mat:
 		for ind,line in enumerate(mat):
 			if ind == 0:
 				aa = line.strip(' \n').split('  ')

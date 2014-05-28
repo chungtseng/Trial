@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#Parsing FASTA files.
 class FASTA(object):
     def __init__(self, file_name):
         self.file_name = file_name

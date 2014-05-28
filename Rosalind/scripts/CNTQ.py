@@ -5,10 +5,10 @@ def CTBL(newick):
     toks = re.split('([(),])',newick)
     #print toks
     leaves = {ind:node for ind,node in enumerate(toks) if re.match('[^();,]',node) and node != ''}
-    leaves_set_1 = set([node for node in toks if re.match('[^();,]',node) and node != ''])
-    leaves_set_2 = set([node for node in toks if re.match('[A-Z]',node)])
-    print leaves_set_1 - leaves_set_2
-    print len(leaves)
+    #leaves_set_1 = set([node for node in toks if re.match('[^();,]',node) and node != ''])
+    #leaves_set_2 = set([node for node in toks if re.match('[A-Z]',node)])
+    #print leaves_set_1 - leaves_set_2
+    #print len(leaves)
     #print leaves
     pn = 2
     pi = 0
@@ -39,7 +39,8 @@ def CTBL(newick):
             results.append([i[1] for i in sorted_rec])
     return results
 def QRT(c):
-    result = []
+    result = 0
+    results = []
     from itertools import combinations,product
     for i in c:
         if i.count('1') >= 2 and i.count('0') >= 2:
@@ -48,36 +49,27 @@ def QRT(c):
             one_comb = combinations(ones,2)
             zero_comb = combinations(zeroes,2)
             combs = product(one_comb,zero_comb)
-            result.append([tuple([k for k in comb[0]]) + tuple(j for j in comb[1]]) for comb in combs]) 
-    return result
-def equi(q1,q2):
-    if q1 == q2:
-        return True
-    elif q1[0] in q2[2:] and q1[1] in q2[2:] and q1[2] in q2[0:2] and q1[3] in q2[0:2]:
-        return True
-    elif q1[0] in q2[0:2] and q1[1] in q2[0:2] and q1[2] in q2[2:] and q1[3] in q2[2:]:
-        return True
-    else:
-        return False                    
+            for i in tuple([(tuple(sorted([k for k in comb[0]])) , tuple(sorted([j for j in comb[1]]))) for comb in combs]):
+                if (i[0],i[1]) not in results and (i[1],i[0]) not in results:
+                    results.append(i)
+                    result += 1
+    return result % 10**6
 
 if __name__ == '__main__':
-    with open('/home/ycz/Rosalind/input/CTBL_in.txt', 'rb') as in_data:
+    with open('/home/ycz/Rosalind/input/CNTQ_in.txt', 'rb') as in_data:
+        n = in_data.readline()
         newick = in_data.readline().strip()
     m = CTBL(newick)
+    #print m
     c = []
     for i in m:
         c.append(''.join(map(str,i)))
+
     raw_results = QRT(c)
-    results = []
-    for i in raw_results:
-        for j in i:
-            for k in results:
-                if equi(j,k):
-                    break
-            else:
-                results.append(j)
-    result = len(results)
-    with open('/home/ycz/Rosalind/output/CTBL_out.txt','w+') as out_data:
-        for i in m:
-            out_data.write(''.join(map(str,i)))
-            out_data.write('\n')
+
+    print raw_results
+    #with open('/home/ycz/Rosalind/output/CTBL_out.txt','w+') as out_data:
+    #    for i in m:
+    #        out_data.write(''.join(map(str,i)))
+    #        out_data.write('\n')
+

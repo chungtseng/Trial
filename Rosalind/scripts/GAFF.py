@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+'''
+Global Alignment with Scoring Matrix and Affine Gap Penalty
+A dynamic program solution.
+Given: Two protein strings s and t in FASTA format (each of length at most 100 aa).
+
+Return: The maximum alignment score between s and t, followed by two augmented strings s′ and t′ representing an optimal alignment of s and t.
+
+Use:
+    The BLOSUM62 scoring matrix.
+    Gap opening penalty equal to 11.
+    Gap extension penalty equal to 1.
+'''
 def GAFF(pr_1, pr_2):
 	score_dict = {}
 	with open('/home/ycz/Rosalind/input/BLOSUM62.txt') as mat:
@@ -7,7 +20,6 @@ def GAFF(pr_1, pr_2):
 				ind_dict = dict(zip(range(len(aa)),aa))
 			else:
 				mat_score = filter(lambda i: i != '',line[1:].strip(' \n').split(' '))
-				#print mat_score
 				for col, ite in enumerate(mat_score):
 					score_dict[ind_dict[ind-1]+ind_dict[col]] = int(ite)
 	n_rows = len(pr_1) + 1
@@ -65,8 +77,6 @@ def GAFF(pr_1, pr_2):
 			col -= 1
 		elif track_mat[row][col] == 'from hor':
 			while track_mat_hor[row][col] != 'from dia left':
-				#if  col != 2 and row != 1:
-				#	break
 				s = '-' + s
 				t = pr_2[col-1] + t
 				col -= 1
@@ -75,8 +85,6 @@ def GAFF(pr_1, pr_2):
 			col -= 1
 		elif track_mat[row][col] == 'from lon':
 			while track_mat_lon[row][col] != 'from dia up':
-				#if  col != 1 and row != 2:
-					#break
 				s = pr_1[row-1] + s
 				t = '-' + t
 				row -= 1

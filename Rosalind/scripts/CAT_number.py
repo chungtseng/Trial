@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+'''
+Given: An RNA string s having the same number of occurrences of 'A' as 'U' and the same number of occurrences of 'C' as 'G'. The length of the string is at most 300 bp.
+
+Return: The total number of noncrossing perfect matchings of basepair edges in the bonding graph of s, modulo 1,000,000.
+'''
+
 def check_noncrossing(rna,i):
 	bounding = dict(zip('AUCG','UAGC'))
 	if rna[0] != bounding[rna[i]]:

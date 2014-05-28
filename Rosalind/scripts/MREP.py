@@ -7,6 +7,7 @@ def read_input(file_name):
     dna = ''.join(dna)
     if dna[-1] != '$':
         dna += '$'
+        #dna = '^' + dna
     suffs = [dna[i:] for i in xrange(len(dna)-1,-1,-1)]
     return suffs
 
@@ -55,11 +56,31 @@ def TRIE(dna):
 	TRIE(dna_dict[key])
     return
 
+def MREP(suff):
+#    print suff
+    repeats = {}
+    for i in suff:
+        if len(i) >= 20 and '$' not in i:
+            if i in repeats:
+                repeats[i] += 1
+            else:
+                repeats[i] = 1
+    print repeats
+    results = []
+    for i in repeats:
+        for j in repeats:
+            if i in j and i != j:
+                break
+        else:
+            results.append(i)
+    return results
+            
+    
 if __name__ == '__main__':
-    suffs = read_input('/home/ycz/Rosalind/input/LING_in.txt')
-    print suffs
+    suffs = read_input('/home/ycz/Rosalind/input/MREP_in.txt')
+    #print suffs
     n = 1
     result = []
     TRIE(suffs)
-    print result
+    print MREP(result)
     
